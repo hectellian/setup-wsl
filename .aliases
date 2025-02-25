@@ -1,0 +1,6 @@
+alias py="python3"
+alias inshallah='sudo'
+alias ls='eza --git --icons=always'
+alias la="eza -lah --git --icons=always $@"
+alias ll='eza -al --icons=always'
+alias lt='eza -a --tree --level=1 --icons=always'
