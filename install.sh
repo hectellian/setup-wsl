@@ -39,24 +39,27 @@ curl -sSfL https://raw.githubusercontent.com/ajeetdsouza/zoxide/main/install.sh 
 
 # Install Oh My Zsh
 echo "Installing Oh My Zsh..."
-sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" -s --batch || {
+    echo "Could not install Oh My Zsh" >/dev/stderr
+    exit 1
+}
 
 # Zsh Plugins
 echo "Installing Zsh plugins..."
 git clone https://github.com/zsh-users/zsh-autosuggestions.git $ZSH_CUSTOM/plugins/zsh-autosuggestions
 git clone https://github.com/zsh-users/zsh-syntax-highlighting.git $ZSH_CUSTOM/plugins/zsh-syntax-highlighting
 git clone https://github.com/z-shell/F-Sy-H.git \
-  ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/F-Sy-H
+    ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/F-Sy-H
 
 # Copy configuration files (back up if they exist)
 echo "Copying configuration files..."
 for file in .aliases .zshrc .zprofile; do
-  if [ -f ~/"$file" ]; then
-    echo "Backing up existing $file to ${file}.bak"
-    mv ~/"$file" ~/"${file}.bak"
-  fi
-  echo "Copying $file to home directory..."
-  cp "$file" ~/"$file"
+    if [ -f ~/"$file" ]; then
+        echo "Backing up existing $file to ${file}.bak"
+        mv ~/"$file" ~/"${file}.bak"
+    fi
+    echo "Copying $file to home directory..."
+    cp "$file" ~/"$file"
 done
 
 # Copy .config in home directory without overwriting existing files
@@ -68,13 +71,12 @@ cp -rn .config/* ~/.config/
 echo "Changing shell to zsh..."
 chsh -s $(which zsh)
 
-# Source .zshrc
-echo "Sourcing .zshrc..."
-source ~/.zshrc
-
 # Install p10k
 echo "Installing Powerlevel10k..."
 git clone --depth=1 https://github.com/romkatv/powerlevel10k.git "${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k"
+
+# Restart shell
+exec zsh
 
 # Start p10k configuration
 echo "Launching Powerlevel10k configuration..."
