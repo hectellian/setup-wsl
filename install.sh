@@ -97,14 +97,6 @@ else
     git clone https://github.com/zsh-users/zsh-syntax-highlighting.git $ZSH_CUSTOM/plugins/zsh-syntax-highlighting
 fi
 
-if [ -d $ZSH_CUSTOM/plugins/F-Sy-H ]; then 
-    echo "F-Sy-H already installed."
-else
-    echo "Installing F-Sy-H..."
-    git clone https://github.com/z-shell/F-Sy-H.git \
-    ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/F-Sy-H
-fi
-
 # Copy configuration files (back up if they exist)
 echo "Copying configuration files..."
 for file in .aliases .zshrc; do
@@ -136,9 +128,5 @@ fi
 
 # Restart shell
 exec zsh
-
-# Start p10k configuration
-echo "Launching Powerlevel10k configuration..."
-p10k configure
 
 echo "Installation completed successfully."
