@@ -51,7 +51,7 @@ pipx install poetry
 
 # Zoxide
 # Check if Zoxide is already installed
-if [ -f /usr/local/bin/zoxide ]; then
+if [ -f /usr/local/bin/zoxide ] || [ -f $HOME/.local/bin/zoxide ]; then
     echo "Zoxide already installed."
 else
     echo "Installing Zoxide..."
@@ -74,28 +74,28 @@ fi
 # Check if Zsh plugins are already installed
 ZSH_CUSTOM=~/.oh-my-zsh/custom
 echo "Installing Zsh plugins..."
-if [ -d $ZSH_CUSTOM/plugins/zsh-autosuggestions ] 
+if [ -d $ZSH_CUSTOM/plugins/zsh-autosuggestions ]; then
     echo "Zsh Autosuggestion already installed."
 else
     echo "Installing Zsh Autosuggestion..."
     git clone https://github.com/zsh-users/zsh-autosuggestions.git $ZSH_CUSTOM/plugins/zsh-autosuggestions
 fi
 
-if [ -d $ZSH_CUSTOM/plugins/zsh-autocomplete ] 
+if [ -d $ZSH_CUSTOM/plugins/zsh-autocomplete ]; then
     echo "Zsh Autocomplete already installed."
 else
     echo "Installing Zsh Autocomplete..."
     git clone --depth 1 -- https://github.com/marlonrichert/zsh-autocomplete.git $ZSH_CUSTOM/plugins/zsh-autocomplete 
 fi
 
-if [ -d $ZSH_CUSTOM/plugins/zsh-syntax-highlighting ] 
+if [ -d $ZSH_CUSTOM/plugins/zsh-syntax-highlighting ]; then 
     echo "Zsh Syntax Highlighting already installed."
 else
     echo "Installing Zsh Syntax Highlighting..."
     git clone https://github.com/zsh-users/zsh-syntax-highlighting.git $ZSH_CUSTOM/plugins/zsh-syntax-highlighting
 fi
 
-if [ -d $ZSH_CUSTOM/plugins/F-Sy-H ] 
+if [ -d $ZSH_CUSTOM/plugins/F-Sy-H ]; then 
     echo "F-Sy-H already installed."
 else
     echo "Installing F-Sy-H..."
