@@ -1,7 +1,9 @@
 #!/bin/bash
 set -e # Exit script immediately on first error.
 
-LOGFILE="logs/install.log"
+# Create log file with timestamp and redirect stdout and stderr to it
+LOGFILE="log/install-$(date +"%Y-%m-%d_%H-%M-%S").log"
+touch "$LOGFILE"
 exec > >(tee -a "$LOGFILE") 2>&1
 
 # Generate SSH key pair
