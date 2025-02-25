@@ -72,7 +72,12 @@ fi
 
 # Zsh Plugins
 # Check if Zsh plugins are already installed
-ZSH_CUSTOM=~/.oh-my-zsh/custom
+# check if ZSH_CUSTOM is not empty
+if [ -z "$ZSH_CUSTOM" ]; then
+    echo "ZSH_CUSTOM is empty. Setting ZSH_CUSTOM to ~/.oh-my-zsh/custom..."
+    ZSH_CUSTOM=~/.oh-my-zsh/custom
+fi
+
 echo "Installing Zsh plugins..."
 if [ -d $ZSH_CUSTOM/plugins/zsh-autosuggestions ]; then
     echo "Zsh Autosuggestion already installed."
@@ -105,7 +110,7 @@ fi
 
 # Copy configuration files (back up if they exist)
 echo "Copying configuration files..."
-for file in .aliases .zshrc .zprofile; do
+for file in .aliases .zshrc; do
     if [ -f ~/"$file" ]; then
         echo "Backing up existing $file to ${file}.bak"
         mv ~/"$file" ~/"${file}.bak"
