@@ -38,12 +38,22 @@ else
     sudo add-apt-repository ppa:zhangsongcui3371/fastfetch -y
 fi
 
+# Fzf install
+# Check if Fzf is already installed
+if [ -f $HOME/.fzf ]; then
+    echo "Fzf already installed."
+else
+    echo "Installing Fzf..."
+    git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
+    ~/.fzf/install
+fi
+
 # Update and upgrade
 echo "Starting system update and upgrade..."
 sudo apt update -y && sudo apt upgrade -y
 # Essential packages
 sudo apt install -y git curl wget zsh vim tmux htop build-essential make cmake \
-    python3-dev python3-pip python3-setuptools python3-venv python-is-python3 fzf pipx gpg eza fastfetch
+    python3-dev python3-pip python3-setuptools python3-venv python-is-python3 pipx gpg eza fastfetch
 
 # Poetry install
 echo "Installing Poetry via pipx..."
