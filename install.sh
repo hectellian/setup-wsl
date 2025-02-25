@@ -31,7 +31,7 @@ fi
 
 # Fastfetch install
 # Check if Fastfetch repository is already added
-if [ -f /etc/apt/sources.list.d/zhangsongcui3371-ubuntu-fastfetch-focal.list ]; then
+if [ -f /etc/apt/sources.list.d/zhangsongcui3371-ubuntu-fastfetch-noble.sources ]; then
     echo "Fastfetch repository already added."
 else
     echo "Adding Fastfetch repository..."
