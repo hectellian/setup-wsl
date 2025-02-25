@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 set -e # Exit script immediately on first error.
 
 # Create log file with timestamp and redirect stdout and stderr to it
@@ -64,10 +64,7 @@ if [ -d ~/.oh-my-zsh ]; then
     echo "Oh My Zsh already installed."
 else
     echo "Installing Oh My Zsh..."
-    sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh -O -)" -s --batch || {
-        echo "Could not install Oh My Zsh" >/dev/stderr
-        exit 1
-    }
+    sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
 fi
 
 # Zsh Plugins
@@ -122,7 +119,7 @@ done
 # Copy .config in home directory without overwriting existing files
 echo "Copying .config files..."
 mkdir -p ~/.config
-cp -rn .config/* ~/.config/
+cp -r .config/* ~/.config/
 
 # Change shell to zsh
 echo "Changing shell to zsh..."
